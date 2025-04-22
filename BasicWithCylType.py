@@ -38,6 +38,7 @@ def slider_with_input(label, min_val, max_val, step, default):
 pressure = slider_with_input("Pressure", 100, 500, 10, 250)
 bore = slider_with_input("Bore", 10, 500, 1, 100)
 rod_dia = slider_with_input("Rod diameter", 10, 500, 1, 75)
+stroke = slider_with_input("Rod diameter", 10, 1500, 1, 750)
 
 # === Categorical Inputs ===
 cushioning = st.selectbox("Cushioning", options=list(cushioning_map.keys()))
@@ -50,7 +51,6 @@ if st.button("Predict Cost 💰"):
     input_data = pd.DataFrame([[
         pressure, bore, rod_dia, stroke,
         cushioning_map[cushioning],
-        rod_length, cec_thickness, piston_thickness,
         bearing_map[bearing], cyltype_map[cyl_type]
     ]], columns=input_headers)
 
