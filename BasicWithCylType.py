@@ -4,7 +4,7 @@ import pandas as pd
 import joblib
 
 # === Load the trained model ===
-model = joblib.load("./LatestModelBasicWIthCylType.pkl")
+model = joblib.load("./LatestModelBasicWithCylType.pkl")
 
 # === Define encoding mappings ===
 cushioning_map = {'CC': 0, 'CH': 1, 'NC': 2}
@@ -17,7 +17,7 @@ cyltype_map = {
 # === Define input headers (must match training model) ===
 input_headers = [
     "Pressure", "Bore", "Rod diameter", "Stroke", "Cushioning", 
-    "BearingY-N","HEC-OD","Piston_Thickness","Cyl Type","CEC_Thickness"
+    "BearingY-N","Cyl Type"
 ]
 
 st.set_page_config(page_title="Hydraulic Cost Estimator", layout="centered")
