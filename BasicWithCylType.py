@@ -4,7 +4,7 @@ import pandas as pd
 import joblib
 
 # === Load the trained model ===
-model = joblib.load("./LatestModelBasicWithCylType.pkl")
+model = joblib.load("./LatestModelBasicWIthCylType.pkl")
 
 # === Define encoding mappings ===
 cushioning_map = {'CC': 0, 'CH': 1, 'NC': 2}
@@ -16,8 +16,8 @@ cyltype_map = {
 
 # === Define input headers (must match training model) ===
 input_headers = [
-    "Pressure", "Bore", "Rod diameter", "Stroke", "Cushioning",
-    "BearingY-N", "Cyl Type"
+    "Pressure", "Bore", "Rod diameter", "Stroke", "Cushioning", 
+    "BearingY-N","HEC-OD","Piston_Thickness","Cyl Type","CEC_Thickness"
 ]
 
 st.set_page_config(page_title="Hydraulic Cost Estimator", layout="centered")
@@ -38,7 +38,8 @@ def slider_with_input(label, min_val, max_val, step, default):
 pressure = slider_with_input("Pressure", 100, 500, 10, 250)
 bore = slider_with_input("Bore", 10, 500, 1, 100)
 rod_dia = slider_with_input("Rod diameter", 10, 500, 1, 75)
-stroke = slider_with_input("Stroke", 10, 1500, 1, 750)
+stroke = slider_with_input("Stroke", 100, 5000, 1, 750)
+
 
 # === Categorical Inputs ===
 cushioning = st.selectbox("Cushioning", options=list(cushioning_map.keys()))
@@ -51,7 +52,8 @@ if st.button("Predict Cost 💰"):
     input_data = pd.DataFrame([[
         pressure, bore, rod_dia, stroke,
         cushioning_map[cushioning],
-        bearing_map[bearing], cyltype_map[cyl_type]
+        cyltype_map[cyl_type], 
+        bearing_map[bearing]
     ]], columns=input_headers)
 
     # Predict
@@ -59,3 +61,19 @@ if st.button("Predict Cost 💰"):
 
     # Show result
     st.success(f"🧾 Estimated Cost: ₹ {predicted_cost:,.2f}")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
