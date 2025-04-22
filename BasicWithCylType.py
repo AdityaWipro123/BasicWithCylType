@@ -17,7 +17,7 @@ cyltype_map = {
 # === Define input headers (must match training model) ===
 input_headers = [
     "Pressure", "Bore", "Rod diameter", "Stroke", "Cushioning", 
-    "BearingY-N","Cyl Type"
+    "Cyl Type","BearingY-N"
 ]
 
 st.set_page_config(page_title="Hydraulic Cost Estimator", layout="centered")
